@@ -162,7 +162,7 @@ def main():
     # Header with French-Egyptian design (without pattern lines and with eagle logo)
     st.markdown("""
     <div class="main-header">
-        <h1>🦅 Consulat d'Égypte à Paris<br>قنصلية مصر في باريس</h1>
+        <h1>🦅 Consulat d'Égypte à Paris<br>القنصلية العامة لجمهورية مصر العربية في باريس</h1>
     </div>
     """, unsafe_allow_html=True)
     
