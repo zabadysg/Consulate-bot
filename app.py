@@ -48,6 +48,21 @@ st.markdown("""
         color: #1f2937 !important;
     }
     
+    /* Force all chat message text to be black/dark */
+    .stChatMessage * {
+        color: #1f2937 !important;
+    }
+    
+    /* More specific chat message text styling */
+    .stChatMessage p, .stChatMessage div, .stChatMessage span {
+        color: #1f2937 !important;
+    }
+    
+    /* Force markdown elements in chat to be dark */
+    .stChatMessage .stMarkdown, .stChatMessage .stMarkdown * {
+        color: #1f2937 !important;
+    }
+    
     /* Force all input elements to light theme */
     input, textarea, select {
         background-color: #ffffff !important;
@@ -113,14 +128,24 @@ st.markdown("""
     
     /* User message styling - French theme */
     .stChatMessage[data-testid*="user"] {
-        background-color: #f5f5f5;
+        background-color: #f5f5f5 !important;
         border-left: 4px solid #002366; /* French blue */
+        color: #1f2937 !important;
+    }
+    
+    .stChatMessage[data-testid*="user"] * {
+        color: #1f2937 !important;
     }
     
     /* Assistant message styling - Egyptian theme */
     .stChatMessage[data-testid*="assistant"] {
-        background-color: #f9f7f2; /* Papyrus-like color */
+        background-color: #f9f7f2 !important; /* Papyrus-like color */
         border-left: 4px solid #CE1126; /* Egyptian red */
+        color: #1f2937 !important;
+    }
+    
+    .stChatMessage[data-testid*="assistant"] * {
+        color: #1f2937 !important;
     }
     
     /* Sidebar styling */
