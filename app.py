@@ -21,6 +21,52 @@ st.set_page_config(
 # Custom CSS for Egyptian theme
 st.markdown("""
 <style>
+    /* Force light theme */
+    .stApp {
+        background-color: #ffffff !important;
+        color: #1f2937 !important;
+    }
+    
+    /* Override any dark mode elements */
+    .stApp > header {
+        background-color: transparent !important;
+    }
+    
+    /* Ensure sidebar is light */
+    .css-1d391kg {
+        background-color: #f8f9fa !important;
+    }
+    
+    /* Force light background for all containers */
+    .block-container {
+        background-color: #ffffff !important;
+    }
+    
+    /* Override any dark theme chat elements */
+    .stChatMessage {
+        background-color: #ffffff !important;
+        color: #1f2937 !important;
+    }
+    
+    /* Force all input elements to light theme */
+    input, textarea, select {
+        background-color: #ffffff !important;
+        color: #1f2937 !important;
+        border: 1px solid #d1d5db !important;
+    }
+    
+    /* Force any text input widgets to be light */
+    .stTextInput > div > div > input {
+        background-color: #ffffff !important;
+        color: #1f2937 !important;
+    }
+    
+    /* Force any text area widgets to be light */
+    .stTextArea > div > div > textarea {
+        background-color: #ffffff !important;
+        color: #1f2937 !important;
+    }
+    
     .main-header {
         background: linear-gradient(135deg, rgba(0,35,102,0.9) 0%, rgba(255,255,255,0.9) 50%, rgba(206,17,38,0.9) 100%); /* French and Egyptian flag colors with better opacity */
         padding: 25px;
@@ -43,6 +89,14 @@ st.markdown("""
         margin: 12px 0 0 0;
         font-size: 1.3em;
         font-family: 'Garamond', serif;
+    }
+    /* Logo styling */
+    .main-header img {
+        filter: drop-shadow(2px 2px 4px rgba(0,0,0,0.3));
+        transition: transform 0.3s ease;
+    }
+    .main-header img:hover {
+        transform: scale(1.05);
     }
     .main-header p {
         color: #374151; /* Dark enough to read clearly */
@@ -84,17 +138,63 @@ st.markdown("""
         transform: translateY(-2px);
     }
     
-    /* Chat input styling */
+    /* Chat input styling - Force light theme */
+    div[data-testid="stChatInput"] {
+        background-color: #ffffff !important;
+    }
+    
+    div[data-testid="stChatInput"] > div {
+        background-color: #ffffff !important;
+    }
+    
+    div[data-testid="stChatInput"] > div > div {
+        background-color: #ffffff !important;
+    }
+    
+    div[data-testid="stChatInput"] > div > div > div {
+        background-color: #ffffff !important;
+    }
+    
     div[data-testid="stChatInput"] > div > div > div > div {
         border-radius: 30px;
-        border: 2px solid #d4af37; /* Gold border */
+        border: 2px solid #d4af37 !important; /* Gold border */
         padding: 5px 10px;
         box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        background-color: #ffffff !important; /* Force white background */
+        color: #1f2937 !important; /* Force dark text */
+    }
+    
+    /* Force the textarea inside chat input to be light */
+    div[data-testid="stChatInput"] textarea {
+        background-color: #ffffff !important;
+        color: #1f2937 !important;
+        border: none !important;
+    }
+    
+    /* Force placeholder text to be visible */
+    div[data-testid="stChatInput"] textarea::placeholder {
+        color: #6b7280 !important;
+        opacity: 0.8 !important;
     }
     
     /* Global font styling */
     body, .stMarkdown, p {
         font-family: 'Garamond', serif;
+    }
+    
+    /* Footer styling */
+    .st-emotion-cache-hzygls {
+        position: relative !important;
+        bottom: 0px !important;
+        width: 100% !important;
+        min-width: 100% !important;
+        background-color: #E6EBF1 !important; /* Light theme footer */
+        display: flex !important;
+        flex-direction: column !important;
+        -webkit-box-align: center !important;
+        align-items: center !important;
+        border-top: 1px solid #e5e7eb !important; /* Light border */
+        padding: 10px 0 !important;
     }
     
     /* Decorative elements - right star only */
@@ -159,12 +259,39 @@ def main():
     
     # No footer CSS needed
     
-    # Header with French-Egyptian design (without pattern lines and with eagle logo)
-    st.markdown("""
-    <div class="main-header">
-        <h1>🦅 Consulat d'Égypte à Paris<br><span style="font-size: 0.7em;">القنصلية العامة لجمهورية مصر العربية في باريس</span></h1>
-    </div>
-    """, unsafe_allow_html=True)
+    # Load and encode the logo
+    import base64
+    
+    def get_logo_base64():
+        try:
+            with open("logo.svg", "r", encoding="utf-8") as f:
+                logo_svg = f.read()
+            return base64.b64encode(logo_svg.encode()).decode()
+        except:
+            return ""
+    
+    logo_base64 = get_logo_base64()
+    
+    # Header with French-Egyptian design and logo
+    if logo_base64:
+        st.markdown(f"""
+        <div class="main-header">
+            <div style="display: flex; align-items: center; justify-content: center; gap: 20px; margin-bottom: 10px;">
+                <img src="data:image/svg+xml;base64,{logo_base64}" style="height: 80px; width: auto;" alt="Egyptian Consulate Logo">
+                <div>
+                    <h1 style="margin: 0; line-height: 1.2;">Consulat d'Égypte à Paris</h1>
+                    <h2 style="margin: 5px 0 0 0; font-size: 1em;">القنصلية العامة لجمهورية مصر العربية في باريس</h2>
+                </div>
+            </div>
+        </div>
+        """, unsafe_allow_html=True)
+    else:
+        # Fallback if logo can't be loaded
+        st.markdown("""
+        <div class="main-header">
+            <h1>🦅 Consulat d'Égypte à Paris<br><span style="font-size: 0.7em;">القنصلية العامة لجمهورية مصر العربية في باريس</span></h1>
+        </div>
+        """, unsafe_allow_html=True)
     
     # Main chat interface
     
