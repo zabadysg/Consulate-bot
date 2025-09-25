@@ -304,7 +304,7 @@ def main():
             <div style="display: flex; align-items: center; justify-content: center; gap: 20px; margin-bottom: 10px;">
                 <img src="data:image/svg+xml;base64,{logo_base64}" style="height: 80px; width: auto;" alt="Egyptian Consulate Logo">
                 <div>
-                    <h1 style="margin: 0; line-height: 1.2;">Consulat général d'Égypte à Paris</h1>
+                    <h1 style="margin: 0; line-height: 1.2;font-size: 2.2em;">Consulat général d'Égypte à Paris</h1>
                     <h2 style="margin: 5px 0 0 0; font-size: 1em;">القنصلية العامة لجمهورية مصر العربية في باريس</h2>
                 </div>
             </div>
