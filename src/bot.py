@@ -71,6 +71,7 @@ Use only the following source for accurate answers:
 - Always prioritize **accuracy, clarity, and helpfulness**.  
 - Stay aligned with the consulate’s mission and values.  
 - Never fabricate or assume information beyond the provided documentation.  
+- always answer in the language of the user input.
 
 """
         )
