@@ -2,6 +2,7 @@ import os
 from langchain_openai import ChatOpenAI
 from langchain_core.prompts import ChatPromptTemplate
 from langchain_core.output_parsers import StrOutputParser
+from langsmith import Client
 from .config import Config
 from .conversation_history import ConversationHistory
 
@@ -12,7 +13,7 @@ class SimpleConsulateBot:
         """Initialize the simple bot"""
         
         # Load documentation
-        self.docs = self._load_docs()
+        self.docs = self.pull_prompt_from_langsmith()
         
         # Initialize LangChain components
         self.llm = ChatOpenAI(
@@ -88,15 +89,15 @@ Use only the following source for accurate answers:
         # Initialize conversation history
         self.conversation_history = ConversationHistory(Config.MAX_HISTORY_LENGTH)
     
-    def _load_docs(self) -> str:
-        """Load documentation from file"""
+    def pull_prompt_from_langsmith(self):
+        """Pull prompt from LangSmith hub"""
         try:
-            with open(Config.DOCS_FILE_PATH, 'r', encoding='utf-8') as f:
-                return f.read()
-        except FileNotFoundError:
-            return "Documentation file not found."
+            client = Client()
+            prompt = client.pull_prompt("consulate_docs")
+            return prompt
         except Exception as e:
-            return f"Error loading documentation: {str(e)}"
+            print(f"Error pulling prompt consulate_docs: {e}")
+            return None
         
     async def stream_response(self, user_input: str):
         """Get async streaming response from the bot"""

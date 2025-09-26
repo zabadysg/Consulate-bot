@@ -166,6 +166,8 @@ st.markdown("""
     /* Chat input styling - Force light theme */
     div[data-testid="stChatInput"] {
         background-color: #ffffff !important;
+        border: 1.5px solid #ff0000 !important; /* Very thick red border on container */
+        border-radius: 35px !important;
     }
     
     div[data-testid="stChatInput"] > div {
@@ -182,7 +184,7 @@ st.markdown("""
     
     div[data-testid="stChatInput"] > div > div > div > div {
         border-radius: 30px;
-        border: 2px solid #d4af37 !important; /* Gold border */
+        border: 2px solid #ff0000 !important; /* Very thick red border */
         padding: 5px 10px;
         box-shadow: 0 2px 10px rgba(0,0,0,0.1);
         background-color: #ffffff !important; /* Force white background */
@@ -308,6 +310,24 @@ def main():
                     <h2 style="margin: 5px 0 0 0; font-size: 1em;">القنصلية العامة لجمهورية مصر العربية في باريس</h2>
                 </div>
             </div>
+            <div style="text-align: center; margin-top: 15px;">
+                <a href="https://consulategypte.fr/" target="_blank" style="
+                    display: inline-block;
+                    background: linear-gradient(135deg, #002366 0%, #CE1126 100%);
+                    color: white;
+                    padding: 10px 20px;
+                    text-decoration: none;
+                    border-radius: 25px;
+                    font-family: 'Garamond', serif;
+                    font-weight: bold;
+                    box-shadow: 0 3px 10px rgba(0,0,0,0.2);
+                    transition: all 0.3s ease;
+                    border: 2px solid #d4af37;
+                " onmouseover="this.style.transform='translateY(-2px)'; this.style.boxShadow='0 5px 15px rgba(0,0,0,0.3)';" 
+                   onmouseout="this.style.transform='translateY(0px)'; this.style.boxShadow='0 3px 10px rgba(0,0,0,0.2)';">
+                    🌐 Back to the Website
+                </a>
+            </div>
         </div>
         """, unsafe_allow_html=True)
     else:
@@ -315,6 +335,24 @@ def main():
         st.markdown("""
         <div class="main-header">
             <h1>🦅 Consulat général d'Égypte à Paris<br><span style="font-size: 0.7em;">القنصلية العامة لجمهورية مصر العربية في باريس</span></h1>
+            <div style="text-align: center; margin-top: 15px;">
+                <a href="https://consulategypte.fr/" target="_blank" style="
+                    display: inline-block;
+                    background: linear-gradient(135deg, #002366 0%, #CE1126 100%);
+                    color: white;
+                    padding: 10px 20px;
+                    text-decoration: none;
+                    border-radius: 25px;
+                    font-family: 'Garamond', serif;
+                    font-weight: bold;
+                    box-shadow: 0 3px 10px rgba(0,0,0,0.2);
+                    transition: all 0.3s ease;
+                    border: 2px solid #d4af37;
+                " onmouseover="this.style.transform='translateY(-2px)'; this.style.boxShadow='0 5px 15px rgba(0,0,0,0.3)';" 
+                   onmouseout="this.style.transform='translateY(0px)'; this.style.boxShadow='0 3px 10px rgba(0,0,0,0.2)';">
+                    🌐 Back to the Website
+                </a>
+            </div>
         </div>
         """, unsafe_allow_html=True)
     
